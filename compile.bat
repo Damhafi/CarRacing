@@ -1,0 +1,1 @@
+gcc main.c display.c car.c -o programa -D DEBUG=1
