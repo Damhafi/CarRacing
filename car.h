@@ -3,8 +3,8 @@
 #include <conio.h>
 
 //Configuração das dimensões da matriz principal do jogo
-#define COLUMNS 15
-#define ROWS 25
+#define COLUNAS 15
+#define LINHAS 25
 
 //Configurações de layout
 #define PIXEL 219
@@ -25,8 +25,6 @@
 #define ORIENTACAO_LEFT 2
 #define TIPO_I 7
 
-
-
 //Configurações do mecanismo de colisão
 #define CHECK_SIDE 1
 #define UNCHECK_SIDE 0
@@ -36,40 +34,33 @@
 typedef struct{
     int i;  //posicao nas linhas da matriz
     int j; //posicao nas colunas da matriz
-    int orientacao; //orientacao da peça
-    int tipo; //o tipo de peça (7 possíveis)
-    int width; //largura da peça
-    int height; //altura da peça
-}Bloco;
+    int largura; //largura da peça
+    int altura; //altura da peça
+}Carro;
 
 /*
     Inicializa a matriz principal com 'espaços vazios'
 */
-void init(char matrix[ROWS][COLUMNS]);
+void init(char matriz[LINHAS][COLUNAS]);
 
 /*
     Mostra o conteúdo da matriz principal na tela 
     do computador.
 */
-void printMatrix(char matrix[ROWS][COLUMNS]);
+void printMatrix(char matriz[LINHAS][COLUNAS]);
 
 /*
-    Desenhar uma barra usando o simbolo do caracter ASCII
+    Desenhar uma car usando o modelo do caracter ASCII
     passado por parâmetro.
 */
-void drawBar(char matrix[ROWS][COLUMNS], Bloco barra, int simbolo);
+void drawBar(char matriz[LINHAS][COLUNAS], Carro car, int modelo);
 
 /*
-    Inicializar a peça do tipo barra
+    Inicializar a peça do tipo car
 */
-void initBar(Bloco *barra);
+void initBar(Carro *car);
 
 /*
     Verifica a colisão de blocos
 
-int collisionDetect(char matrix[ROWS][COLUMNS], Bloco barra);*/
-
-/*
-    Verifica a colisão de barras
-
-int collisionBar(char matrix[ROWS][COLUMNS], Bloco barra, int collideSides, int side);*/
+int collisionDetect(char matriz[LINHAS][COLUNAS], Bloco car);*/

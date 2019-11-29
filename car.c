@@ -1,14 +1,13 @@
 #include "car.h"
-
 /*
     Inicializa a matriz principal com 'espaços vazios'
 */
-void init(char matrix[ROWS][COLUMNS]){
+void init(char matriz[LINHAS][COLUNAS]){
     int i,j;
 
-    for(i=0; i<ROWS; i++){
-        for(j=0; j<COLUMNS; j++){
-            matrix[i][j] = ' ';
+    for(i=0; i<LINHAS; i++){
+        for(j=0; j<COLUNAS; j++){
+            matriz[i][j] = ' ';
         }
     }
 }
@@ -17,20 +16,20 @@ void init(char matrix[ROWS][COLUMNS]){
     Mostra o conteúdo da matriz principal na tela 
     do computador.
 */
-void printMatrix(char matrix[ROWS][COLUMNS]){
+void printMatrix(char matriz[LINHAS][COLUNAS]){
     int i, j;
 
     printf("\t\t\t\t\t");
 
     //Linha de cima
-    for (i = 0; i < COLUMNS + 2; i++)
+    for (i = 0; i < COLUNAS + 2; i++)
     {
         printf("*");
     }
     printf("\n");
 
     //Matriz do jogo
-    for (i = 0; i < ROWS; i++)
+    for (i = 0; i < LINHAS; i++)
     {
         printf("\t\t\t\t\t*");
         //parte da esquerda
@@ -39,10 +38,10 @@ void printMatrix(char matrix[ROWS][COLUMNS]){
         else
             printf(" ");
 
-        for (j = 0; j < COLUMNS; j++)
+        for (j = 0; j < COLUNAS; j++)
         {
-            if (j > 1 & j < COLUMNS)
-                printf("%c", matrix[i][j]);
+            if (j > 1 & j < COLUNAS)
+                printf("%c", matriz[i][j]);
         }
 
         //parte da direita
@@ -56,7 +55,7 @@ void printMatrix(char matrix[ROWS][COLUMNS]){
 
     printf("\t\t\t\t\t");
     //Linha de baixo
-    for (j = 0; j < COLUMNS + 2; j++)
+    for (j = 0; j < COLUNAS + 2; j++)
     {
         printf("*");
     }
@@ -64,55 +63,48 @@ void printMatrix(char matrix[ROWS][COLUMNS]){
 }
 
 /*
-    Desenhar uma barra usando o simbolo do caracter ASCII
+    Desenhar uma car usando o modelo do caracter ASCII
     passado por parâmetro.
 */
-void drawBar(char matrix[ROWS][COLUMNS], Bloco barra, int simbolo){
+void drawBar(char matriz[LINHAS][COLUNAS], Carro car, int modelo){
         //Cabeça
-        matrix[barra.i][barra.j] = simbolo;
+        matriz[car.i][car.j] = modelo;
 
-        //Bracos
-        matrix[barra.i+1][barra.j+1] = simbolo;
-        matrix[barra.i+1][barra.j+2] = simbolo;
-        matrix[barra.i+1][barra.j-2] = simbolo;
-        matrix[barra.i+1][barra.j-1] = simbolo;
-
+        //Bracos        
+        matriz[car.i+1][car.j+1] = modelo;
+        matriz[car.i+1][car.j+2] = modelo;
+        matriz[car.i+1][car.j-2] = modelo;
+        matriz[car.i+1][car.j-1] = modelo;
+  
+       
         //Tronco
-        matrix[barra.i+1][barra.j] = simbolo;
-        matrix[barra.i+2][barra.j] = simbolo;
+        matriz[car.i+1][car.j] = modelo;
+        matriz[car.i+2][car.j] = modelo;
 
         //Pernas
-        matrix[barra.i+3][barra.j+1] = simbolo;
-        matrix[barra.i+3][barra.j+2] = simbolo;
-        matrix[barra.i+3][barra.j-2] = simbolo;
-        matrix[barra.i+3][barra.j-1] = simbolo;    
+        matriz[car.i+3][car.j+1] = modelo;
+        matriz[car.i+3][car.j+2] = modelo;
+        matriz[car.i+3][car.j-2] = modelo;
+        matriz[car.i+3][car.j-1] = modelo;   
 }
 
 /*
-    Inicializar a peça do tipo barra
+    Inicializar a peça do tipo car
 */
-void initBar(Bloco *barra){
-    barra->i = 15;
-    barra->j = COLUMNS/2;
-    barra->tipo = TIPO_I;
-    barra->orientacao = ORIENTACAO_LEFT;
-    barra->width = 5;
-    barra->height = 1;
+void initBar(Carro *car){
+    car->i = 15;
+    car->j = COLUNAS/2;
+    car->largura = 5;
+    car->altura = 4;
 
     #if DEBUG == 1
-        printf("posI: %d  posJ: %d \n", barra->i, barra->j);
+        printf("posI: %d  posJ: %d \n", car->i, car->j);
         system("pause");
     #endif
 }
 
 /*
-    Verifica a colisão de blocos
+    Verifica a colisão dos Carros
 
-int collisionDetect(char matrix[ROWS][COLUMNS], Bloco barra){
-}*/
-
-/*
-    Verifica a colisão de barras
-
-int collisionBar(char matrix[ROWS][COLUMNS], Bloco barra, int collideSides, int side){
+int collisionBar(char matriz[LINHAS][COLUNAS], Carro car, int collideSides, int side){
 }*/

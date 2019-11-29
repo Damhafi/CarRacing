@@ -1,9 +1,10 @@
 #include "car.h"
 #include "display.h"
 
+
 int main(){
-    char matrix[ROWS][COLUMNS];
-    Bloco tijolo;
+    char matriz[LINHAS][COLUNAS];
+    Carro carro;
     int keypressed=0;
     int cont=0;
     int velocidade=2;
@@ -13,29 +14,30 @@ int main(){
     system("cls");
 
     //posicao inicial do personagem
-    initBar(&tijolo);
+    initBar(&carro);
 
     //inicializando matriz
-    init(matrix);
+    init(matriz);
 
     //animação do jogo
     while(keypressed != ESC){        
         gotoxy(0,0);
 
         #if DEBUG == 1
-            printf("posicao = (%d, %d)\n", tijolo.i, tijolo.j);
-            printf("dimensao = (%d, %d)\n", tijolo.width, tijolo.height);
+            printf("Posicao = (%d, %d)\n", carro.i, carro.j);
+            printf("Dimensao = (%d, %d)\n", carro.largura, carro.altura);
         #endif
 
         //posicionar o @ no meio da tela
-        drawBar(matrix, tijolo, PIXEL);
+      
+        drawBar(matriz, carro, PIXEL);
 
         //mostro a matriz na tela
-        printMatrix(matrix);
+        printMatrix(matriz);
 
         //faça posição anterior do @ ser apagada
         
-        drawBar(matrix, tijolo, EMPTY);
+        drawBar(matriz, carro, EMPTY);
             
             
         //lendo teclas
@@ -47,14 +49,14 @@ int main(){
             case (int)'a':
             case (int)'A':
             case LEFT: 
-                if((matrix, tijolo, CHECK_SIDE, LEFT))
-                    tijolo.j--; //vai para esquerda
+                if (carro.j - (carro.largura / 2) > 2)
+                carro.j--; //vai para esquerda
             break; 
             case TECLA_d:
             case TECLA_D:
             case RIGHT: 
-                if((matrix, tijolo, CHECK_SIDE, RIGHT))
-                    tijolo.j++; //vai para a direita 
+                if (carro.j + (carro.largura / 2) < (COLUNAS - 1))
+                carro.j++; //vai para a direita 
             break; 
         }
     }
