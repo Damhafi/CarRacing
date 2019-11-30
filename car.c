@@ -1,4 +1,5 @@
 #include "car.h"
+
 /*
     Inicializa a matriz principal com 'espaços vazios'
 */
@@ -16,9 +17,9 @@ void init(char matriz[LINHAS][COLUNAS]){
     Mostra o conteúdo da matriz principal na tela 
     do computador.
 */
-void printMatrix(char matriz[LINHAS][COLUNAS]){
+void print_Matriz(char matriz[LINHAS][COLUNAS]){
     int i, j;
-
+    
     printf("\t\t\t\t\t");
 
     //Linha de cima
@@ -66,7 +67,7 @@ void printMatrix(char matriz[LINHAS][COLUNAS]){
     Desenhar uma car usando o modelo do caracter ASCII
     passado por parâmetro.
 */
-void drawBar(char matriz[LINHAS][COLUNAS], Carro car, int modelo){
+void print_Car(char matriz[LINHAS][COLUNAS], Carro car, int modelo){
         //Cabeça
         matriz[car.i][car.j] = modelo;
 

@@ -1,5 +1,7 @@
 #include "car.h"
 #include "display.h"
+#include <stdlib.h>
+#include <time.h>
 
 
 int main(){
@@ -29,15 +31,15 @@ int main(){
         #endif
 
         //posicionar o @ no meio da tela
-      
-        drawBar(matriz, carro, PIXEL);
+        
+        print_Car(matriz, carro, PIXEL);
 
         //mostro a matriz na tela
-        printMatrix(matriz);
+        print_Matriz(matriz);
 
         //faça posição anterior do @ ser apagada
         
-        drawBar(matriz, carro, EMPTY);
+        print_Car(matriz, carro, EMPTY);
             
             
         //lendo teclas
@@ -50,13 +52,13 @@ int main(){
             case (int)'A':
             case LEFT: 
                 if (carro.j - (carro.largura / 2) > 2)
-                carro.j--; //vai para esquerda
+                    (carro.j = 4); //vai para esquerda
             break; 
             case TECLA_d:
             case TECLA_D:
             case RIGHT: 
                 if (carro.j + (carro.largura / 2) < (COLUNAS - 1))
-                carro.j++; //vai para a direita 
+                    carro.j = 12; //vai para a direita 
             break; 
         }
     }

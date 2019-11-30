@@ -21,10 +21,6 @@
 #define TECLA_D 68
 #define TECLA_ESPACO 32
 
-//Criando as orientações para as peças
-#define ORIENTACAO_LEFT 2
-#define TIPO_I 7
-
 //Configurações do mecanismo de colisão
 #define CHECK_SIDE 1
 #define UNCHECK_SIDE 0
@@ -47,13 +43,13 @@ void init(char matriz[LINHAS][COLUNAS]);
     Mostra o conteúdo da matriz principal na tela 
     do computador.
 */
-void printMatrix(char matriz[LINHAS][COLUNAS]);
+void print_Matriz(char matriz[LINHAS][COLUNAS]);
 
 /*
     Desenhar uma car usando o modelo do caracter ASCII
     passado por parâmetro.
 */
-void drawBar(char matriz[LINHAS][COLUNAS], Carro car, int modelo);
+void print_Car(char matriz[LINHAS][COLUNAS], Carro car, int modelo);
 
 /*
     Inicializar a peça do tipo car
