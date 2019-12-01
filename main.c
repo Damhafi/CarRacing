@@ -46,11 +46,6 @@ int jogo(){
     ShowConsoleCursor(0);
     system("cls");
 
-    //posicao inicial do personagem
-    initBar(&carro);
-
-    
-
     //animação do jogo
     while(keypressed != ESC){        
         gotoxy(0,0);
@@ -61,9 +56,12 @@ int jogo(){
             printf("Dimensao = (%d, %d)\n", carro.largura, carro.altura);
         #endif
 
-        //posicionar o @ no meio da tela
+        //Printa carro
         
-        print_Car(matriz, carro, PIXEL);
+        print_Car(matriz, car, PIXEL);
+        print_Car(matriz, car, PIXEL);
+        print_Car(matriz, car, PIXEL);
+        print_Car(matriz, car, PIXEL);
         
 
         //mostro a matriz na tela

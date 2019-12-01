@@ -1,42 +1,7 @@
 #include "car.h"
-#include "colors.h"
 
 
-void Menu(char matriz[COL]){
-    int j,i;
-    system("color 0E");
-    
-	printf("\n\n\n\n\n\t\t\t");
-    //Linha de Cima
-    for (j = 0; j <= 80; j++){
-        printf("%c",220);
 
-    }
-    printf("\n");
-
-    printf("\t\t\t\t\t\t\tCAR RACING");printf("\n\t\t\t");
-
-    for (j = 0; j <= 80; j++){
-        printf("%c",196);
-    }
-    printf("\n");
-
-    //OPÇÔES
-    printf("\t\t\t\t1 - NOVO JOGO");printf("\n");
-    printf("\t\t\t\t2 - HIGH SCORES");printf("\n");
-    printf("\t\t\t\t3 - SAIR");
-
-    printf("\n\t\t\t");
-    for (j = 0; j <= 80; j++){
-        printf("%c",196);
-    }printf("\n\t\t\t");
-
-
-    for (j = 0; j <= 80; j++){
-        printf("%c",220);
-
-    }
-}
 
     //Desenha a matriz principal com espaços vazios
 void init(char matriz[LINHAS][COLUNAS]){

@@ -54,10 +54,6 @@ void print_Matriz(char matriz[LINHAS][COLUNAS]);
 void print_Car(char matriz[LINHAS][COLUNAS], Carro car, int modelo);
 
 
-    //Struct do carro que vem na contra mão
-
-void initBar(Carro *car);
-
 
     //Verifica a colisão de blocos
 
