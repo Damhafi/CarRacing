@@ -1,31 +1,71 @@
 #include "car.h"
+#include "colors.h"
 
 
+void Menu(char matriz[COL]){
+    int j,i;
+    system("color 0E");
+    
+	printf("\n\n\n\n\n\t\t\t");
+    //Linha de Cima
+    for (j = 0; j <= 80; j++){
+        printf("%c",220);
+
+    }
+    printf("\n");
+
+    printf("\t\t\t\t\t\t\tCAR RACING");printf("\n\t\t\t");
+
+    for (j = 0; j <= 80; j++){
+        printf("%c",196);
+    }
+    printf("\n");
+
+    //OPÇÔES
+    printf("\t\t\t\t1 - NOVO JOGO");printf("\n");
+    printf("\t\t\t\t2 - HIGH SCORES");printf("\n");
+    printf("\t\t\t\t3 - SAIR");
+
+    printf("\n\t\t\t");
+    for (j = 0; j <= 80; j++){
+        printf("%c",196);
+    }printf("\n\t\t\t");
 
 
-    //Desenha a matriz principal com espaços vazios
-void init(char matriz[LINHAS][COLUNAS]){
-    int i,j;
+    for (j = 0; j <= 80; j++){
+        printf("%c",220);
 
-    for(i=0; i<LINHAS; i++){
-        for(j=0; j<COLUNAS; j++){
+    }
+}
+
+    //Inicia a matriz do jogo vazia
+void init(char matriz[LINHAS][COLUNAS])
+{
+    int i, j;
+
+    for (i = 0; i < LINHAS; i++)
+    {
+        
+        for (j = 0; j < COLUNAS; j++)
+        {
             matriz[i][j] = ' ';
         }
     }
 }
 
 
-    //Mostra a pista na tela do computador.
-
-void print_Matriz(char matriz[LINHAS][COLUNAS]){
+    //Mostra o carro na matriz que estava vazia
+void print_Matriz(char matriz[LINHAS][COLUNAS], int cont, int faixa)
+{
+    
     int i, j;
     
     printf("\t\t\t\t\t");
-
+    
     //Linha de cima
-    for (i = 0; i < COLUNAS + 2; i++)
-    {
-        printf("*");
+    for (j = 0; j < COLUNAS + 2; j++)
+    {   
+        printf("*");        
     }
     printf("\n");
 
@@ -34,22 +74,26 @@ void print_Matriz(char matriz[LINHAS][COLUNAS]){
     {
         printf("\t\t\t\t\t*");
         //parte da esquerda
-        if (i % 2 == 0)
+        if (i % 2 == faixa){
             printf("%c", 178,foreground(YELLOW));
             style(RESETALL);
+            }
         else
             printf(" ");
 
         for (j = 0; j < COLUNAS; j++)
-        {
-            if (j > 1 & j < COLUNAS)
-                printf("%c", matriz[i][j]);
+        {   
+            if (j > 1 & j < COLUNAS){
+               printf("%c", matriz[i][j]);              
+            }
+                
         }
 
         //parte da direita
-        if (i % 2 == 0)
+        if (i % 2 == faixa){
             printf("%c", 178,foreground(YELLOW));
             style(RESETALL);
+            }
         else
             printf(" ");
 
@@ -66,46 +110,67 @@ void print_Matriz(char matriz[LINHAS][COLUNAS]){
 }
 
 
-    //Desenha o meu carro passado por parâmetro.
+    //Desenha o carro
 
-void print_Car(char matriz[LINHAS][COLUNAS], Carro car, int modelo){
-        //Cabeça
-        matriz[car.i][car.j] = modelo;
 
-        //Bracos
-                
-        matriz[car.i+1][car.j+1] = modelo;
-        matriz[car.i+1][car.j+2] = modelo;
-        matriz[car.i+1][car.j-2] = modelo;
-        matriz[car.i+1][car.j-1] = modelo;
-  
+void print_Car(char matriz[LINHAS][COLUNAS], Carro *car, int modelo)
+{
+    //Parte superior
+    if (car->i + 1 >= 0 && car->i + 1 <= LINHAS - 1)
+    {
+        
+        matriz[car->i + 1][car->j + 1] = modelo;
+        matriz[car->i + 1][car->j + 2] = modelo;
+        matriz[car->i + 1][car->j - 1] = modelo;
+        matriz[car->i + 1][car->j - 2] = modelo;
+      
+    }
+
+    //Cabeça do carro
+    if (car->i >= 0 && car->i <= LINHAS - 1){
+        
+        matriz[car->i][car->j] = modelo;     
+        
+    }        
        
-        //Tronco
-        matriz[car.i+1][car.j] = modelo;
-        matriz[car.i+2][car.j] = modelo;
 
-        //Pernas
-        matriz[car.i+3][car.j+1] = modelo;
-        matriz[car.i+3][car.j+2] = modelo;
-        matriz[car.i+3][car.j-2] = modelo;
-        matriz[car.i+3][car.j-1] = modelo;   
+    //Segunda parte do meio abaixo da cabeça do carro
+    if (car->i + 1 >= 0 && car->i + 1 <= LINHAS - 1)
+        
+        matriz[car->i + 1][car->j] = modelo;
+        
+
+    //Terceira parte do meio
+    if (car->i + 2 >= 0 && car->i + 2 <= LINHAS - 1)
+        
+        matriz[car->i + 2][car->j] = modelo;
+        
+    
+    //Primeira parte inferior 
+    if (car->i + 3 >= 0 && car->i + 3 <= LINHAS - 1)
+    {
+        
+        matriz[car->i + 3][car->j + 1] = modelo;
+        matriz[car->i + 3][car->j + 2] = modelo;
+        matriz[car->i + 3][car->j - 1] = modelo;
+        matriz[car->i + 3][car->j - 2] = modelo;
+        
+    }
 }
 
-
-    //Inicializando meu carro na matriz
-
-void printCarro_ADV(Carro *car){
+    //estrutura do carro inimigo
+void printCarro_ADV(Carro *car)
+{
     car->i = -4;
-    car->j = COLUNAS - 1;
+    car->j = COLUNAS - 3;
     car->largura = 5;
     car->altura = 4;
 }
 
-
-    //Verifica a colisão dos Carros
-
-int colisao_carro(char matriz[LINHAS][COLUNAS], Carro car){
-    int retorno = 0;
+    //colisão do carro
+int colisao_carro(char matriz[LINHAS][COLUNAS], Carro car)
+{
+        int retorno = 0;
 
         //Colisão com o carro
         if (matriz[car.i-1][car.j+(car.largura/2)] != EMPTY){
@@ -122,5 +187,5 @@ int colisao_carro(char matriz[LINHAS][COLUNAS], Carro car){
             retorno = 1;
         }
 
-        return retorno;    
+        return retorno;
 }
