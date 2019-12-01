@@ -5,6 +5,8 @@
 //Configuração das dimensões da matriz principal do jogo
 #define COLUNAS 15
 #define LINHAS 25
+#define LINS 9
+#define COL 80
 
 //Configurações de layout
 #define PIXEL 219
@@ -21,12 +23,15 @@
 #define TECLA_D 68
 #define TECLA_ESPACO 32
 
+//Criando a orientação das peças
+#define ORIENTACAO
+
 //Configurações do mecanismo de colisão
 #define CHECK_SIDE 1
 #define UNCHECK_SIDE 0
 #define NONE 0
 
-//Estrutura padrão de componentes
+//Estrutura padrão dos carros
 typedef struct{
     int i;  //posicao nas linhas da matriz
     int j; //posicao nas colunas da matriz
@@ -34,29 +39,32 @@ typedef struct{
     int altura; //altura da peça
 }Carro;
 
-/*
-    Inicializa a matriz principal com 'espaços vazios'
-*/
+    //Inicializa a matriz do jogo com 'espaços vazios'
+
 void init(char matriz[LINHAS][COLUNAS]);
 
-/*
-    Mostra o conteúdo da matriz principal na tela 
-    do computador.
-*/
+
+    //Preenche a matriz que está vazia na tela.
+
 void print_Matriz(char matriz[LINHAS][COLUNAS]);
 
-/*
-    Desenhar uma car usando o modelo do caracter ASCII
-    passado por parâmetro.
-*/
+
+    //Desenhar uma carro passado por parâmetro.
+
 void print_Car(char matriz[LINHAS][COLUNAS], Carro car, int modelo);
 
-/*
-    Inicializar a peça do tipo car
-*/
+
+    //Struct do carro que vem na contra mão
+
 void initBar(Carro *car);
 
-/*
-    Verifica a colisão de blocos
 
-int collisionDetect(char matriz[LINHAS][COLUNAS], Bloco car);*/
+    //Verifica a colisão de blocos
+
+int colisao_carro(char matriz[LINHAS][COLUNAS], Carro car);
+
+    //MENU
+void Menu();
+
+    //Main que inicia o jogo
+int jogo();

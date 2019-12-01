@@ -4,12 +4,43 @@
 #include <time.h>
 
 
-int main(){
+int jogo(){
     char matriz[LINHAS][COLUNAS];
-    Carro carro;
-    int keypressed=0;
-    int cont=0;
-    int velocidade=2;
+    //MEU CARRO INICIA AQUI
+    Carro car;
+    car.i = LINHAS - 4;
+    car.j = COLUNAS / 2;
+    car.height = 4;
+    car.width = 5;
+
+    //POSICAO DOS 3 CARROS IMMIGOS QUE INICIA
+    Carro adv;
+    adv.i = 0;
+    adv.j = COLUNAS - 3;
+    adv.height = 4;
+    adv.width = 5;
+
+    Carro adv2;
+    adv2.i = 0;
+    adv2.j = COLUNAS - 3;
+    adv2.height = 4;
+    adv2.width = 5;
+
+    Carro adv3;
+    adv3.i = 0;
+    adv3.j = COLUNAS - 3;
+    adv3.height = 4;
+    adv3.width = 5;
+
+    int keypressed = 0;
+    int cont = 0;
+    int velocidade = 3;
+    int faixa = 0;
+    int random = 0;
+    int score =0;
+
+    //inicializando matriz
+    init(matriz);
 
     //apagar o cursor da tela
     ShowConsoleCursor(0);
@@ -18,12 +49,12 @@ int main(){
     //posicao inicial do personagem
     initBar(&carro);
 
-    //inicializando matriz
-    init(matriz);
+    
 
     //animação do jogo
     while(keypressed != ESC){        
         gotoxy(0,0);
+        ShowConsoleCursor(0);
 
         #if DEBUG == 1
             printf("Posicao = (%d, %d)\n", carro.i, carro.j);
@@ -33,6 +64,7 @@ int main(){
         //posicionar o @ no meio da tela
         
         print_Car(matriz, carro, PIXEL);
+        
 
         //mostro a matriz na tela
         print_Matriz(matriz);
