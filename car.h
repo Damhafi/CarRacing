@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <stdbool.h>
 
 //Configuração das dimensões da matriz principal do jogo
 #define COLUNAS 15
@@ -36,6 +37,7 @@ typedef struct{
     int j; //posição nas colunas da matriz
     int largura; //largura da peça
     int altura; //altura da peça
+    bool enabled;
 }Carro;
 
 
