@@ -70,6 +70,8 @@ int jogo()
     int random = 0;
     int score = 0;
 
+    // FILE *fp;
+
     //inicializando matriz
     init(matriz);
 
@@ -100,10 +102,27 @@ int jogo()
         
         int i;
 
-        if (colisao_carro(matriz, car)) 
+        if (colisao_carro(matriz, car)){
             system("pause");
-        else
+            // system("CLS");
+            // Pontos jogador;
+            // jogador.score = score;
+            // fp = fopen("HighScore.bin","ab");
+            // printf("Digite o seu nome: ");
+            // fflush(stdin);
+            // gets(nome);
+            // strcpy(jogador.nome,nome);
+            // fprintf(fp, "%s %d\n", jogador.nome, jogador.score);
+            // fclose(fp);
+            // break;
+            // system("CLS");
+            // main();
+        }
+            
+        else{
             ++score;
+        }
+            
 
         //Apaga Carro
         print_Car(matriz, &car, EMPTY);
@@ -112,18 +131,21 @@ int jogo()
         print_Car(matriz, &adv[2], EMPTY);
 
         ++adv[0].i;
+        
 
+        //Pega a posicao anterior
         if (adv[1].enabled)
             ++adv[1].i;
         if (adv[2].enabled)
             ++adv[2].i;
 
-        // TENTAR MELHORAR ISSO \/
+        //Printa a proxima posicao verificando a anterior
         if (adv[0].i > 8)
             adv[1].enabled = true;
-
         if (adv[1].i > 8)
             adv[2].enabled = true;
+        
+        
 
         //lendo teclas
         keypressed = 0;
@@ -149,13 +171,10 @@ int jogo()
             break;
 
         case TECLA_ESPACO:
-            if (velocidade == 3)
-            {
-
+            if (velocidade == 3){
                 velocidade = 1;
             }
-            else
-            {
+            else{
                 velocidade = 3;
             }
             break;
@@ -165,3 +184,5 @@ int jogo()
 
     return 0;
 }
+
+

@@ -214,3 +214,15 @@ int colisao_carro(char matriz[LINHAS][COLUNAS], Carro car)
 
     return retorno;
 }
+
+// void HighScore(Pontos jogador[5]){
+//     int i,j;
+//     Pontos cont[2];
+//     char Nome[30];
+//     int quantidade = 0;
+//     int quantidade2 = 0;
+//     int q2 = 0;
+//     char num[10];
+//     int fim = 0;
+//     File *fp = fopen("HighScore.bin", "rb");
+// }

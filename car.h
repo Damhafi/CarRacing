@@ -40,6 +40,11 @@ typedef struct{
     bool enabled;
 }Carro;
 
+typedef struct{
+    int score;
+    char nome[30];
+}HighScore;
+
 
     //Inicializa a matriz principal com 'espaços vazios'
 void init(char matriz[LINHAS][COLUNAS]);
@@ -63,3 +68,5 @@ int colisao_carro(char matriz[LINHAS][COLUNAS], Carro car);
 void Menu();
 
 int jogo();
+
+// void HighScore(Pontos jogador[5]);
