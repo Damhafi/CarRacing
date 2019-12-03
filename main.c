@@ -42,7 +42,7 @@ int jogo()
     car.largura = 4;
     car.altura = 5;
 
-    //posição inicial do car adv
+    //posição inicial do car adversario através do sorteio
     Carro adv[3];
 
     adv[0].i = 0;
@@ -85,11 +85,13 @@ int jogo()
         gotoxy(0, 0);
         ShowConsoleCursor(0);
 
-#if DEBUG == 1
-        printf("SCORE: %d\n", score);
-#endif
-
-        faixa = !faixa;
+        #if DEBUG == 1
+            printf("SCORE: %d\n", score);
+            if (score < 50){
+                printf("Level 1");
+            }
+            else printf("Level 2");
+        #endif
 
         //Printa carro
         print_Car(matriz, &car, PIXEL);
@@ -121,6 +123,12 @@ int jogo()
             
         else{
             ++score;
+            //Aumenta a velocidade a partir do X score;
+            if(score>= 100){
+                if (velocidade = 3){
+                   velocidade = 1;
+                } 
+            }
         }
             
 
@@ -130,8 +138,16 @@ int jogo()
         print_Car(matriz, &adv[1], EMPTY);
         print_Car(matriz, &adv[2], EMPTY);
 
-        ++adv[0].i;
+        //Inicia o primeiro carro e dps em baixo sorteia ele novamente pra cair em outro
         
+        if ((cont % velocidade) == 0){
+                //alternar animação estrada
+            if (faixa == 0)
+                faixa = 1;
+            else
+                faixa = 0;
+        
+        ++adv[0].i;
 
         //Pega a posicao anterior
         if (adv[1].enabled)
@@ -144,7 +160,7 @@ int jogo()
             adv[1].enabled = true;
         if (adv[1].i > 8)
             adv[2].enabled = true;
-        
+        }cont++;
         
 
         //lendo teclas
@@ -154,30 +170,19 @@ int jogo()
         if (keypressed == ARROWS)
             keypressed = getch();
 
-        switch (keypressed)
-        {
-        case TECLA_a:
-        case TECLA_A:
-        case LEFT:
-            if (car.j - (car.altura / 2) > 2)
-                (car.j = 4); //vai para esquerda
-
-            break;
-        case TECLA_d:
-        case TECLA_D:
-        case RIGHT:
-            if (car.j + (car.altura / 2) < (COLUNAS - 1))
-                (car.j = 12); //vai para a direita
-            break;
-
-        case TECLA_ESPACO:
-            if (velocidade == 3){
-                velocidade = 1;
-            }
-            else{
-                velocidade = 3;
-            }
-            break;
+        switch (keypressed){
+            case TECLA_a:
+            case TECLA_A:
+            case LEFT:
+                if (car.j - (car.altura / 2) > 2)
+                    (car.j = 4); //vai para esquerda
+                break;
+            case TECLA_d:
+            case TECLA_D:
+            case RIGHT:
+                if (car.j + (car.altura / 2) < (COLUNAS - 1))
+                    (car.j = 12); //vai para a direita
+                break;
         }
     }
     system("CLS");

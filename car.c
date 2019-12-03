@@ -138,7 +138,6 @@ void print_Car(char matriz[LINHAS][COLUNAS], Carro *car, int modelo)
     if(car->enabled){
         if (car->i + 1 >= 0 && car->i + 1 <= LINHAS - 1)
         {
-
             matriz[car->i + 1][car->j + 1] = modelo;
             matriz[car->i + 1][car->j + 2] = modelo;
             matriz[car->i + 1][car->j - 1] = modelo;
